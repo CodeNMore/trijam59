@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/Revelations.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/5x5.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scripts/MainMenu.gd" type="Script" id=5]
+[ext_resource path="res://assets/dynfont.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/rock_hit.wav" type="AudioStream" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+extra_spacing_bottom = -5
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 4 )
+
+[node name="Game" type="Node2D"]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+
+[node name="RockHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+zoom = Vector2( 0.25, 0.25 )
+
+[node name="MainMenu" type="Control" parent="."]
+margin_right = 257.0
+margin_bottom = 150.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="MainMenu"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -114.0
+margin_top = -73.1024
+margin_right = 114.0
+margin_bottom = -2.1024
+custom_fonts/font = ExtResource( 6 )
+text = "TIDBIT"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Subtext" type="Label" parent="MainMenu"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -128.5
+margin_top = 2.16187
+margin_right = 128.5
+margin_bottom = 33.1619
+custom_fonts/font = SubResource( 1 )
+text = "MADE FROM SCRATCH IN 3 HOURS FOR TRIJAM #59 BY CODENMORE"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="MainMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -63.5
+margin_top = -8.0
+margin_right = 63.5
+margin_bottom = 31.0
+rect_scale = Vector2( 1, 0.988166 )
+custom_fonts/font = SubResource( 2 )
+text = "PLAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="MainMenu"]
+
+[node name="GamePlay" type="Node2D" parent="."]
+visible = false
+
+[node name="LevelContainer" type="Node2D" parent="GamePlay"]
+
+[node name="AllPebbles" type="Node2D" parent="GamePlay"]
+[connection signal="pressed" from="MainMenu/Button" to="MainMenu" method="_on_Button_pressed"]

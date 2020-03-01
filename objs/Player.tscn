@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/sheet.png" type="Texture" id=1]
+[ext_resource path="res://scripts/PlayerAnimation.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 8, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 24, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.0
+} ]
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 0.315878, 0.402987 )
+shape = SubResource( 1 )
+
+[node name="Animations" type="Sprite" parent="."]
+position = Vector2( -0.0458603, 4.0585 )
+offset = Vector2( 0.046, -4 )
+script = ExtResource( 2 )
+
+[node name="Left" type="AnimatedSprite" parent="Animations"]
+visible = false
+frames = SubResource( 5 )
+frame = 1
+playing = true
+offset = Vector2( 0, -4 )
+
+[node name="Right" type="AnimatedSprite" parent="Animations"]
+visible = false
+frames = SubResource( 6 )
+frame = 2
+playing = true
+offset = Vector2( 0, -4 )
+
+[node name="Idle" type="AnimatedSprite" parent="Animations"]
+frames = SubResource( 9 )
+playing = true
+offset = Vector2( 0, -4 )
+
+[node name="Jump" type="AnimatedSprite" parent="Animations"]
+visible = false
+frames = SubResource( 10 )
+playing = true
+offset = Vector2( 0, -4 )
+
+[node name="Tween" type="Tween" parent="Animations"]
