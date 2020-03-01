@@ -1,5 +1,5 @@
 # Tidbit
-A game made in a total timespan of 3 hours for TriJam #59, using Godot.
+A game made in a total timespan of 3 hours (development and asset creation time) for TriJam #59, using Godot.
 
 ## Theme
 The theme of this game jam was "if you can't hear it, you can't seee it". In this game, the player must throw rocks to hit unknown objects, making a sound to reveal them to the player.
